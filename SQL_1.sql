@@ -54,13 +54,11 @@ VALUES (1, 'Alex', 'alex.com', 1),
 -- insert values in the tables
 
 
-
 --- assign Person.GenderId as foreign key referencing Gender.ID for data integrity
 ALTER TABLE Person ADD CONSTRAINT Person_GenderID_FK
 FOREIGN KEY (GenderID) REFERENCES Gender(ID)
 
---- this should fail because Gender.ID = 4 doesnt exist 
-INSERT INTO Person(ID, Name, email, GenderID)
+INSERT INTO Person(ID, Name, email, GenderID)  --- this should fail because Gender.ID = 4 doesnt exist 
 VALUES (4, 'Dorothy', 'dora.com', 4);
 --- assign Person.GenderId as foreign key referencing Gender.ID for data integrity
 
@@ -98,6 +96,7 @@ ADD CONSTRAINT CK_Person_Age CHECK (Age>0 AND Age<150)
 UPDATE Person SET Age = 190
 UPDATE Person SET Age = 25
 -- ? Need to find a way to add column and simultaneously update it with unique values
+
 -- "CHECK CONSTRAINT"
 
 
