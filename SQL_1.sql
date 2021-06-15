@@ -1,25 +1,27 @@
 --- create a database
 CREATE DATABASE Sample1
+--- create a database
 
 
 --- rename a database
 ALTER DATABASE Sample1 MODIFY Name = Sample2
+--- rename a database
 
 
 --- alter database name with system stored procedure
 EXECUTE sp_renameDB Sample2, Sample1
+--- alter database name with system stored procedure
 
 
 --- drop a databse 
 DROP DATABASE Sample1
+--- drop a databse 
 
 
 --- create a database with 2 tables
 CREATE DATABASE Sample1
 
-
--- USE to ensure we are usiing Sample1 DB 
-USE [Sample1]
+USE [Sample1] -- USE to ensure we are usiing Sample1 DB 
 GO
 
 CREATE TABLE Gender
@@ -35,6 +37,8 @@ Name nvarchar (50) NOT NULL,
 email nvarchar (50) NOT NULL, 
 GenderID int NOT NULL
 )
+--- create a database with 2 tables
+
 
 
 -- insert values in the tables
@@ -47,55 +51,55 @@ INSERT INTO Person(ID, Name, email, GenderID)
 VALUES (1, 'Alex', 'alex.com', 1), 
 	   (2, 'Brooklyn', 'brooke.com', 2), 
 	   (3, 'Catherine', 'cathy.com', 3);
+-- insert values in the tables
 
 
 
---- assign generid as foreign key for data integrity
+--- assign Person.GenderId as foreign key referencing Gender.ID for data integrity
 ALTER TABLE Person ADD CONSTRAINT Person_GenderID_FK
 FOREIGN KEY (GenderID) REFERENCES Gender(ID)
 
 --- this should fail because Gender.ID = 4 doesnt exist 
 INSERT INTO Person(ID, Name, email, GenderID)
 VALUES (4, 'Dorothy', 'dora.com', 4);
+--- assign Person.GenderId as foreign key referencing Gender.ID for data integrity
 
 
--- inserting default values when no input is provided for a column
+
+-- default constraint: insert default value when no input is provided for a field
 ALTER TABLE Person
 ADD CONSTRAINT DF_Person_GenderID
 DEFAULT 3 FOR GenderID
 
--- testing default contsraint 
-INSERT INTO Person(ID, Name, email)
+INSERT INTO Person(ID, Name, email)  -- testing default contsraint 
 VALUES (4, 'Earl', 'earl.com')
-SELECT * FROM Person
--- you should see GenderID = 3
+SELECT * FROM Person                 -- you should see GenderID = 3
 
--- you can always drop these constraints with below code
-ALTER TABLE Person
+ALTER TABLE Person                   -- you can always drop these constraints with below code
 DROP CONSTRAINT DF_Person_GenderID
+-- default constraint: insert default value when no input is provided for a field
+
 
 
 -- cascading referential integrity : not allowing foreign key reference rows to be deleted
--- you can allow with changed settings so that all the reference values will be / updated with default ones / deleted too / set to Null /
-DELETE FROM Gender WHERE ID = 2 
+-- you can configure settings such that all the FK reference rows will be / updated with default values / deleted / set to Null /
+DELETE FROM Gender WHERE ID = 2  -- supposed to fail
 
 
--- CHECK CONSTRAINT
+-- "CHECK CONSTRAINT"
 
--- add age column and check contsraint limits
-SELECT * FROM Person
+SELECT * FROM Person  -- Add a check constarint to age column so that it checks limits of the variable input
 ALTER TABLE Person
 ADD Age int  
 ALTER TABLE Person
 ADD CONSTRAINT CK_Person_Age CHECK (Age>0 AND Age<150)
 
--- CHECK CONSTRAINT
-
-
 -- testing check constraint 
 UPDATE Person SET Age = 190
 UPDATE Person SET Age = 25
 -- ? Need to find a way to add column and simultaneously update it with unique values
+-- "CHECK CONSTRAINT"
+
 
 
 --IDENTITY COLUMN
@@ -119,6 +123,7 @@ select @@IDENTITY
 --IDENTITY COLUMN
 
 
+
 -- TRIGGER
 -- do thing2 on table2 when thing1 on table1
 create trigger trForInsert on Person for insert
@@ -127,6 +132,7 @@ Begin
 	insert into tstPerson Values ('ABCD')
 End
 -- TRIGGER
+
 
 
 -- UNIQUE KEY CONSTRAINT
@@ -140,4 +146,4 @@ insert into Person values (4, 'Hailey', 'alex.com',1,20)
 
 ALTER TABLE Person 
 drop constraint UQ_Person_email
-
+-- UNIQUE KEY CONSTRAINT
