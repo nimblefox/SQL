@@ -4,7 +4,7 @@ Repository is based on this MSSQL playlist - <a href="https://youtube.com/playli
 
 ### Topics from video playlist 
 - Database basics
-  - create a database
+  - <a href="https://github.com/nimblefox/TSQL/blob/bc2937dd68036fdc1b76914d810cdf59cc0a7ec2/SQL_1.sql#L1">create a database</a>
   - rename a database
   - drop a databse 
   - create a database with 2 tables
