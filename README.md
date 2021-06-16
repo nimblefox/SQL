@@ -6,11 +6,11 @@ Repository is based on
 
 What I have learnt 
 1. Database basics
-  a. create a database
-  b. rename a database
-  c. drop a databse 
-  d. create a database with 2 tables
-  e. insert values in the tables
+  - create a database
+  - rename a database
+  - drop a databse 
+  - create a database with 2 tables
+  - insert values in the tables
 
 2. Constraints
   a. foreign key constraint 
