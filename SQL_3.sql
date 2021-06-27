@@ -144,3 +144,88 @@ DROP TABLE #trimExample;
 -- LEN and DATALENGTH 
 /*. DATALENGTH returns the same value as LEN when the string is a CHAR or VARCHAR data type, which takes one byte per character. 
 The difference occurs when using DATALENGTH on NCHAR or NVARCHAR data types, which take up to two bytes*/
+
+
+/*CHARINDEX too find the position of a string inside a string*/
+SELECT LastName, CHARINDEX('e',LastName) AS "Find e",
+ CHARINDEX('e',LastName,4) AS "Skip 3 Characters",
+ CHARINDEX('be',LastName) AS "Find be",
+ CHARINDEX('Be',LastName) AS "Find Be"
+FROM AdventureWorks2019.Person.Person
+WHERE BusinessEntityID IN (293,295,211,297,299,3057,15027);
+
+
+/*SUBSTRING is just like LEFT*/
+SELECT LastName, SUBSTRING(LastName,1,4) AS "First 4",
+ SUBSTRING(LastName,5,50) AS "Characters 5 and later"
+FROM AdventureWorks2019.Person.Person
+WHERE BusinessEntityID IN (293,295,211,297,299,3057,15027);
+
+
+/*CHOOSE allows you to select a value in an array based on an index. The CHOOSE function 
+requires an index value and list of values for the array*/
+
+
+/*REVERSE returns a string in reverse order*/
+
+/*Use UPPER and LOWER to change a string to either uppercase or lowercase*/
+
+/*Use REPLACE to substitute one string value inside another string value.*/
+
+/*STRING_SPLIT splits the string into muliple rows*/
+SELECT value
+FROM STRING_SPLIT('dog cat fish bird lizard',' ');
+/*STRING_AGG aggregates rows into a single row*/
+SELECT STRING_AGG(Name, ', ') AS List
+FROM AdventureWorks2019.Production.ProductCategory;
+
+
+-- NESTING FUNCTIONS : inner functions executes first
+SELECT EmailAddress
+	  ,SUBSTRING(EmailAddress,CHARINDEX('@',EmailAddress) + 1,50) AS DOMAIN
+FROM AdventureWorks2019.Production.ProductReview;
+
+SELECT physical_name,
+ RIGHT(physical_name,CHARINDEX('\',REVERSE(physical_name))-1) AS 
+FileName
+FROM sys.database_files;
+
+
+-- Exercise 4-3
+/*Write a query that displays the first ten characters of the AddressLine1
+column in the Person.Address table.*/
+SELECT [AddressLine1]
+	  ,LEFT([AddressLine1], 10) As [first10]
+	FROM [AdventureWorks2019].[Person].[Address]
+
+
+/*Write a query that displays characters 10 to 15 of the AddressLine1 column 
+in the Person.Address table*/
+SELECT [AddressLine1]
+	  ,RIGHT(LEFT([AddressLine1], 15), 6) As [10to15]
+	FROM [AdventureWorks2019].[Person].[Address]
+
+
+/*Write a query displaying the first and last names from the Person.Person
+table all in uppercase*/
+SELECT UPPER([FirstName]) AS [FirstNameUpper],UPPER([LastName]) AS [LastNameUpper]
+	FROM [AdventureWorks2019].[Person].[Person]
+
+
+/*The ProductNumber in the Production.Product table contains a hyphen (-). 
+Write a query that uses the SUBSTRING function and the CHARINDEX function 
+to display the characters in the product number following the hyphen. Note: 
+There is also a second hyphen in many of the rows; ignore the second hyphen 
+for this question. Hint: Try writing this statement in two steps, the first using the 
+CHARINDEX function and the second adding the SUBSTRING function*/
+SELECT [ProductNumber]
+      ,CHARINDEX('-', [ProductNumber]) AS Hyphen
+	  ,SUBSTRING([ProductNumber], CHARINDEX('-', [ProductNumber])+1, 50) AS Answer
+	FROM [AdventureWorks2019].[Production].[Product]
+
+
+/*Switch to the WideWorldImporters database. Write a SELECT statement to 
+the Application.Countries table, creating a new code, which is the first 
+three characters of the CountryName capitalized. Alias the column NewCode, 
+returning only the column created and the IsoAlpha3Code column. Hint: You 
+will use both the UPPER() function and the LEFT() function.*/
