@@ -15,6 +15,6 @@ Resources: <a href="https://youtube.com/playlist?list=PL08903FB7ACA1C2FB">SQL Se
   - <a href="https://github.com/nimblefox/TSQL/blob/d59eae0fc859215aa23f4c9cc983847bd7c453df/SQL_1.sql#L67-L78">default constraint</a>
   - <a href="https://github.com/nimblefox/TSQL/blob/d59eae0fc859215aa23f4c9cc983847bd7c453df/SQL_1.sql#L82-L84">cascade referential integrity</a>
   - <a href="https://github.com/nimblefox/TSQL/blob/d59eae0fc859215aa23f4c9cc983847bd7c453df/SQL_1.sql#L87-L100">check constraint</a>
-  - identity column
+  - <a href="https://github.com/nimblefox/TSQL/blob/d59eae0fc859215aa23f4c9cc983847bd7c453df/SQL_1.sql#L104-L122">identity column</a>
   - trigger
   - unique key constraint
