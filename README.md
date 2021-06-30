@@ -18,3 +18,9 @@ Resources: <a href="https://youtube.com/playlist?list=PL08903FB7ACA1C2FB">SQL Se
   - <a href="https://github.com/nimblefox/TSQL/blob/d59eae0fc859215aa23f4c9cc983847bd7c453df/SQL_1.sql#L104-L122">identity column</a>
   - <a href="https://github.com/nimblefox/TSQL/blob/d59eae0fc859215aa23f4c9cc983847bd7c453df/SQL_1.sql#L126-L133">trigger</a>
   - <a href="https://github.com/nimblefox/TSQL/blob/d59eae0fc859215aa23f4c9cc983847bd7c453df/SQL_1.sql#L137-L148">unique key constraint</a>
+
+- Querying 
+  - <a href="https://github.com/nimblefox/TSQL/blob/main/SQL_2.sql#L9-L16">schema information</a>
+  - SELECT
+  - literal values and table names
+  - WHERE, BETWEEN, IN
