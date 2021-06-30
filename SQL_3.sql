@@ -146,7 +146,7 @@ DROP TABLE #trimExample;
 The difference occurs when using DATALENGTH on NCHAR or NVARCHAR data types, which take up to two bytes*/
 
 
-/*CHARINDEX too find the position of a string inside a string*/
+/*CHARINDEX to find the position of a string inside a string*/
 SELECT LastName, CHARINDEX('e',LastName) AS "Find e",
  CHARINDEX('e',LastName,4) AS "Skip 3 Characters",
  CHARINDEX('be',LastName) AS "Find be",
@@ -155,7 +155,7 @@ FROM AdventureWorks2019.Person.Person
 WHERE BusinessEntityID IN (293,295,211,297,299,3057,15027);
 
 
-/*SUBSTRING is just like LEFT*/
+/*SUBSTRING is just like LEFT with better control*/
 SELECT LastName, SUBSTRING(LastName,1,4) AS "First 4",
  SUBSTRING(LastName,5,50) AS "Characters 5 and later"
 FROM AdventureWorks2019.Person.Person
@@ -229,3 +229,31 @@ the Application.Countries table, creating a new code, which is the first
 three characters of the CountryName capitalized. Alias the column NewCode, 
 returning only the column created and the IsoAlpha3Code column. Hint: You 
 will use both the UPPER() function and the LEFT() function.*/
+SELECT * 
+	FROM [WideWorldImporters].[Application].[Countries]
+
+SELECT [CountryName], UPPER(LEFT(CountryName, 3)) AS [NewCode], [IsoAlpha3Code] 
+	FROM [WideWorldImporters].[Application].[Countries]
+
+
+/* In the CustomerName (located in the Sales.Customer table), return only the 
+portion inside of parentheses, including the parentheses. Hint: See the “Nesting 
+Functions” section. You may need to use a number of built-in functions, such as 
+SUBSTRING(), CHARINDEX(), and LEN() */
+SELECT * 
+	FROM [WideWorldImporters].[Sales].[Customers];
+
+SELECT [CustomerID], [CustomerName], SUBSTRING( [CustomerName], CHARINDEX('(', [CustomerName]), CHARINDEX(')', [CustomerName])) AS [Answer]
+	FROM [WideWorldImporters].[Sales].[Customers];
+
+
+-- DATE and TIME functions
+SELECT GETDATE()      -- 2021-06-30 18:52:49.993
+	  ,SYSDATETIME(); -- 2021-06-30 18:52:49.9972158
+
+
+SELECT OrderDate, DATEADD(year,1,OrderDate) AS OneMoreYear,
+ DATEADD(month,1,OrderDate) AS OneMoreMonth,
+ DATEADD(day,-1,OrderDate) AS OneLessDay
+FROM AdventureWorks2019.Sales.SalesOrderHeader
+WHERE SalesOrderID in (43659,43714,60621);
