@@ -11,8 +11,8 @@ Resources: <a href="https://youtube.com/playlist?list=PL08903FB7ACA1C2FB">SQL Se
   - <a href="https://github.com/nimblefox/TSQL/blob/d59eae0fc859215aa23f4c9cc983847bd7c453df/SQL_1.sql#L44-L54">insert values in the tables</a>
 
 - Constraints
-  - foreign key constraint 
-  - default constraint
+  - <a href="https://github.com/nimblefox/TSQL/blob/d59eae0fc859215aa23f4c9cc983847bd7c453df/SQL_1.sql#L57-L63">foreign key constraint</a>
+  - <a href="https://github.com/nimblefox/TSQL/blob/d59eae0fc859215aa23f4c9cc983847bd7c453df/SQL_1.sql#L57-L63">default constraint</a>
   - cascade referential integrity
   - check constraint
   - identity column
