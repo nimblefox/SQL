@@ -248,12 +248,57 @@ SELECT [CustomerID], [CustomerName], SUBSTRING( [CustomerName], CHARINDEX('(', [
 
 
 -- DATE and TIME functions
+-- GETDATE(), SYSDATETIME()
 SELECT GETDATE()      -- 2021-06-30 18:52:49.993
 	  ,SYSDATETIME(); -- 2021-06-30 18:52:49.9972158
 
 
+-- DATEADD()
 SELECT OrderDate, DATEADD(year,1,OrderDate) AS OneMoreYear,
  DATEADD(month,1,OrderDate) AS OneMoreMonth,
  DATEADD(day,-1,OrderDate) AS OneLessDay
 FROM AdventureWorks2019.Sales.SalesOrderHeader
 WHERE SalesOrderID in (43659,43714,60621);
+
+
+-- DATEDIFF()
+SELECT OrderDate, GETDATE() CurrentDateTime,
+ DATEDIFF(year,OrderDate,GETDATE()) AS YearDiff,
+ DATEDIFF(month,OrderDate,GETDATE()) AS MonthDiff,
+ DATEDIFF(d,OrderDate,GETDATE()) AS DayDiff
+FROM AdventureWorks2019.Sales.SalesOrderHeader
+WHERE SalesOrderID in (43659,43714,60621);
+
+
+--DATENAME (returns strings), DATEPART(returns numbers)
+SELECT OrderDate, DATEPART(year,OrderDate) AS OrderYear,
+ DATEPART(month,OrderDate) AS OrderMonth,
+ DATEPART(day,OrderDate) AS OrderDay,
+ DATEPART(weekday,OrderDate) AS OrderWeekDay
+FROM AdventureWorks2019.Sales.SalesOrderHeader
+WHERE SalesOrderID in (43659,43714,60621);
+
+--2011-05-31 00:00:00.000	2011	5	31	3
+--2011-06-04 00:00:00.000	2011	6	4	7
+--2013-11-21 00:00:00.000	2013	11	21	5
+
+SELECT OrderDate, DATENAME(year,OrderDate) AS OrderYear,
+ DATENAME(month,OrderDate) AS OrderMonth,
+ DATENAME(day,OrderDate) AS OrderDay,
+ DATENAME(weekday,OrderDate) AS OrderWeekDay
+FROM AdventureWorks2019.Sales.SalesOrderHeader
+WHERE SalesOrderID in (43659,43714,60621);
+
+--2011-05-31 00:00:00.000	2011	May	    31	Tuesday
+--2011-06-04 00:00:00.000	2011	June	4	Saturday
+--2013-11-21 00:00:00.000	2013	Novembe 21	Thursday
+
+
+-- DAY, MONTH, YEAR ; these are just like datepart but standalone
+SELECT OrderDate, YEAR(OrderDate) AS OrderYear,
+ MONTH(OrderDate) AS OrderMonth,
+ DAY(OrderDate) AS OrderDay
+FROM AdventureWorks2019.Sales.SalesOrderHeader
+WHERE SalesOrderID in (43659,43714,60621);
+
+
