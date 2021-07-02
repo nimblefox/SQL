@@ -302,3 +302,57 @@ FROM AdventureWorks2019.Sales.SalesOrderHeader
 WHERE SalesOrderID in (43659,43714,60621);
 
 
+--FORMAT - to convert date formats, including country specfic formats 
+DECLARE @d DATETIME = GETDATE();
+SELECT FORMAT( @d, 'dd', 'en-US' ) AS Result;
+SELECT FORMAT( @d, 'yyyy-M-d') AS Result;
+SELECT FORMAT( @d, 'MM/dd/yyyy', 'en-IN' ) AS Result;
+
+
+--DATEFROMPARTS
+SELECT DATEFROMPARTS(2012, 3, 10) AS RESULT;
+SELECT TIMEFROMPARTS(12, 10, 32, 0, 0) AS RESULT;
+SELECT DATETIME2FROMPARTS (2012, 3, 10, 12, 10, 32, 0, 0) AS RESULT;
+
+
+--EOMONTH ; returns end date of month given
+SELECT EOMONTH(GETDATE()) AS [End of this month],
+ EOMONTH(GETDATE(),1) AS [End of next month],
+ EOMONTH('2020-01-01') AS [Another month]
+
+
+ --Exercise 4-4
+ /*Write a query that calculates the number of days between the date an 
+order was placed and the date that it was shipped using the Sales.
+SalesOrderHeader table. Include the SalesOrderID, OrderDate, and 
+ShipDate columns.*/
+SELECT [SalesOrderID], [OrderDate], [ShipDate], DATEDIFF(DAY, [OrderDate], [ShipDate]) AS 'Duration in days'
+	FROM [AdventureWorks2019].[Sales].[SalesOrderHeader] ;
+
+
+/*Write a query that displays only the date, not the time, for the order date and 
+ship date in the Sales.SalesOrderHeader table.*/
+SELECT [SalesOrderID], [OrderDate], CONVERT(VARCHAR(12), [OrderDate], 111) AS 'Formatted date'
+	FROM [AdventureWorks2019].[Sales].[SalesOrderHeader] ;
+
+
+/*Write a query that adds six months to each order date in the Sales.
+SalesOrderHeader table. Include the SalesOrderID and OrderDate
+columns*/
+SELECT [SalesOrderID], [OrderDate], DATEADD(MONTH,6,[OrderDate])
+	FROM [AdventureWorks2019].[Sales].[SalesOrderHeader];
+
+
+/*Write a query that displays the year of each order date and the numeric 
+month of each order date in separate columns in the results. Include the 
+SalesOrderID and OrderDate columns.*/
+SELECT [SalesOrderID], [OrderDate], DATEPART(YEAR, [OrderDate]) As 'YEAR', DATEPART(MONTH, [OrderDate]) AS 'Month'
+	FROM [AdventureWorks2019].[Sales].[SalesOrderHeader];
+
+
+/*Write a SELECT statement that returns the date five quarters in the past from 
+today’s date.*/
+SELECT GETDATE(), DATEADD(QUARTER, -5, GETDATE()) As '5 Qs in past'
+
+SELECT [SalesOrderID], [OrderDate], DATEADD(MONTH, -15, [OrderDate]) As '5 Qs in past'
+	FROM [AdventureWorks2019].[Sales].[SalesOrderHeader];
