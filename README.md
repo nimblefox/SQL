@@ -22,5 +22,5 @@ Resources: <a href="https://youtube.com/playlist?list=PL08903FB7ACA1C2FB">SQL Se
 - Querying 
   - <a href="https://github.com/nimblefox/TSQL/blob/main/SQL_2.sql#L9-L16">schema information</a>
   - <a href="https://github.com/nimblefox/TSQL/blob/9bcaa9923336a6d97a542e0f2484059fcdf1695e/SQL_2.sql#L30-L48">SELECT</a>
-  - literal values and table names
+  - <a href="https://github.com/nimblefox/TSQL/blob/9bcaa9923336a6d97a542e0f2484059fcdf1695e/SQL_2.sql#L51-L64">literal values and table names</a>
   - WHERE, BETWEEN, IN
