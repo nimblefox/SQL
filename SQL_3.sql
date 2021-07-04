@@ -356,3 +356,173 @@ SELECT GETDATE(), DATEADD(QUARTER, -5, GETDATE()) As '5 Qs in past'
 
 SELECT [SalesOrderID], [OrderDate], DATEADD(MONTH, -15, [OrderDate]) As '5 Qs in past'
 	FROM [AdventureWorks2019].[Sales].[SalesOrderHeader];
+
+
+-- Mathematical Functions
+-- ABS
+SELECT ABS(-2)
+-- POWER
+SELECT POWER(2, 3)
+-- SQRT 
+SELECT SQRT(9)
+-- ROUND ; 3rd argument optional for truncation
+SELECT ROUND(1234.1294,2) AS "2 places on the right",
+ ROUND(1234.1294,-2) AS "2 places on the left",
+ ROUND(1234.1294,2,1) AS "Truncate 2",
+ ROUND(1234.1294,-2,1) AS "Truncate -2";
+ -- RAND
+ SELECT RAND()
+ SELECT CAST(RAND() * 100 AS INT) + 1 AS "1 to 100",
+ CAST(RAND()* 1000 AS INT) + 900 AS "900 to 1900",
+ CAST(RAND() * 5 AS INT)+ 1 AS "1 to 5"
+ 
+
+ -- Exercise 4-5
+ /*Write a query using the Sales.SalesOrderHeader table that displays the 
+SubTotal rounded to two decimal places. Include the SalesOrderID column 
+in the results.*/
+SELECT [SalesOrderID], ROUND([SubTotal],2)	
+	FROM [AdventureWorks2019].[Sales].[SalesOrderHeader]
+
+
+/*Modify the query from Question 1 so that the SubTotal is rounded to the 
+nearest dollar but still displays two zeros to the right of the decimal place*/
+SELECT [SalesOrderID], [SubTotal], ROUND([SubTotal],-0,1)	
+	FROM [AdventureWorks2019].[Sales].[SalesOrderHeader] 
+
+
+/* Write a query that calculates the square root of the SalesOrderID value from 
+the Sales.SalesOrderHeader table.*/
+SELECT [SalesOrderID], 	SQRT([SalesOrderID])
+	FROM [AdventureWorks2019].[Sales].[SalesOrderHeader] 
+
+
+/*Write a statement that generates a random number between 1 and 10 each 
+time it is run.*/
+SELECT CAST(RAND()*10 AS INT)+1;
+
+
+/*Without running the queries, supply the values returned by the SELECT
+statements.*/
+SELECT SQRT(2.2)
+
+
+-- Logical functions and expressions
+-- CASE WHEN works like if from python
+-- SIMPLE CASE : To write the simple CASE expression, come up with an expression that you want to evaluate, often a column name, and a list of possible values. 
+SELECT Title,
+ CASE Title
+ WHEN 'Mr.' THEN 'Male'
+ WHEN 'Ms.' THEN 'Female'
+ WHEN 'Mrs.' THEN 'Female'
+ WHEN 'Miss' THEN 'Female'
+ ELSE 'Unknown' END AS Gender
+FROM AdventureWorks2019.Person.Person
+WHERE BusinessEntityID IN (1,5,6,357,358,11621,423)
+
+-- SEARCHED CASE : use the searched CASE syntax when the expression is too complicated for the simple CASE syntax.
+SELECT Title,
+ CASE WHEN Title IN ('Ms.','Mrs.','Miss') THEN 'Female'
+	  WHEN Title = 'Mr.' THEN 'Male'
+      ELSE 'Unknown' END AS Gender
+FROM AdventureWorks2019.Person.Person
+WHERE BusinessEntityID IN (1,5,6,357,358,11621,423);
+
+-- CASE cant return multiple data types
+SELECT Title,
+ CASE WHEN Title IN ('Ms.','Mrs.','Miss') THEN 1
+ WHEN Title = 'Mr.' THEN 'Male'
+ ELSE '1' END AS Gender
+FROM AdventureWorks2019.Person.Person
+WHERE BusinessEntityID IN (1,5,6,357,358,11621,423)
+
+-- CASE return columns
+SELECT VacationHours,SickLeaveHours,
+ CASE WHEN VacationHours > SickLeaveHours THEN VacationHours
+ ELSE SickLeaveHours END AS 'More Hours'
+FROM AdventureWorks2019.HumanResources.Employee;
+
+-- IIF 
+DECLARE @a INT = 50
+DECLARE @b INT = 20
+SELECT IIF (@a > @b, 'TRUE', 'FALSE') AS RESULT;
+
+-- USING COALESCE as IF all NULL 
+SELECT ProductID,Size, Color,
+ COALESCE(Size, Color,'No color or size') AS 'Description'
+FROM AdventureWorks2019.Production.Product
+WHERE ProductID in (1,2,317,320,680,706);
+
+
+-- ADMIN FUNCTIONS
+SELECT DB_NAME() AS "Database Name",
+ HOST_NAME() AS "Host Name",
+ CURRENT_USER AS "Current User",
+ SUSER_NAME() AS "Login",
+ USER_NAME() AS "User Name",
+ APP_NAME() AS "App Name";
+
+
+-- Exercise 4-6
+/*Write a query using the HumanResources.Employee table to display the 
+BusinessEntityID column. Also include a CASE expression that displays 
+Even when the BusinessEntityID value is an even number or Odd when it is 
+odd. Hint: Use the modulo operator.*/
+SELECT BusinessEntityID, 
+	   CASE WHEN (BusinessEntityID % 2) = 0 THEN 'Even'
+	   ELSE 'Odd' END AS Answer
+	FROM [AdventureWorks2019].[HumanResources].[Employee];
+
+
+/*Write a query using the Sales.SalesOrderDetail table to display a 
+value (Under 10 or 10–19 or 20–29 or 30–39 or 40 and over) based on the 
+OrderQty value by using the CASE expression. Include the SalesOrderID
+and OrderQty columns in the results.*/
+SELECT [OrderQty], 
+	   CASE WHEN [OrderQty] < 10 THEN 'Under 10'
+	        WHEN [OrderQty] >= 10 AND [OrderQty] < 20 THEN '10-19'
+			WHEN [OrderQty] >= 20 AND [OrderQty] < 30 THEN '20-29'
+			WHEN [OrderQty] >= 30 AND [OrderQty] < 40 THEN '30-39'
+			WHEN [OrderQty] >= 40 THEN '40 and over' END AS [Classifier]
+	FROM [AdventureWorks2019].[Sales].[SalesOrderDetail]
+
+
+/*Using the Person.Person table, build the full names using the Title, 
+FirstName, MiddleName, LastName, and Suffix columns. Check the table 
+definition to see which columns allow NULL values and use the COALESCE
+function on the appropriate columns*/
+SELECT [Title], [FirstName], [MiddleName], [LastName], [Suffix],
+	   COALESCE([Title], '') + COALESCE(' ' + [FirstName], '') + COALESCE(' ' + [MiddleName], '') + COALESCE(' ' + [LastName], '') + COALESCE(' ' + [Suffix], '') AS [FullName]
+	FROM [AdventureWorks2019].[Person].[Person]
+
+
+
+/*Look up the SERVERPROPERTY function in SQL Server’s online documentation. 
+Write a statement that displays the edition, instance name, and machine name 
+using this function*/
+SELECT  
+  SERVERPROPERTY('MachineName') AS ComputerName,
+  SERVERPROPERTY('ServerName') AS InstanceName,  
+  SERVERPROPERTY('Edition') AS Edition,
+  SERVERPROPERTY('ProductVersion') AS ProductVersion,  
+  SERVERPROPERTY('ProductLevel') AS ProductLevel;  
+GO  
+
+
+/* Switch to WideWorldImporters. Write a query against the Purchasing.
+PurchaseOrders table and return the DeliveryMethodID column. Add a 
+Figure 4-33. The results of using administrative system functions
+Chapter 4 Using Built-in Functions and Expressions141
+CASE expression that returns Freight if the DeliveryMethodID is equal to 7, 8, 9, 
+or 10. Otherwise, return Other/Courier. Alias this as DeliveryMethod*/
+USE [WideWorldImporters]
+GO
+
+SELECT [DeliveryMethodID],
+	   CASE WHEN [DeliveryMethodID] IN ('7','8','9','10') THEN 'Freight'
+			ELSE 'Other/Courier' END AS 'method'
+  FROM [Purchasing].[PurchaseOrders]
+
+
+-- 
+
