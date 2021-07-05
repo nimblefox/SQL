@@ -20,13 +20,17 @@ Resources: <a href="https://youtube.com/playlist?list=PL08903FB7ACA1C2FB">SQL Se
   - <a href="https://github.com/nimblefox/TSQL/blob/d59eae0fc859215aa23f4c9cc983847bd7c453df/SQL_1.sql#L137-L148">unique key constraint</a>
 
 ### Topics from the Book
-- Querying 
+- Chapter 3 
   - <a href="https://github.com/nimblefox/TSQL/blob/main/SQL_2.sql#L9-L16">schema information</a>
   - <a href="https://github.com/nimblefox/TSQL/blob/9bcaa9923336a6d97a542e0f2484059fcdf1695e/SQL_2.sql#L30-L48">SELECT</a>
   - <a href="https://github.com/nimblefox/TSQL/blob/9bcaa9923336a6d97a542e0f2484059fcdf1695e/SQL_2.sql#L51-L64">literal values and table names</a>
   - <a href="https://github.com/nimblefox/TSQL/blob/9bcaa9923336a6d97a542e0f2484059fcdf1695e/SQL_2.sql#L75-L140">WHERE, BETWEEN, IN</a>
   - <a href="https://github.com/nimblefox/TSQL/blob/f5306f1a16c2b1e5d98280b4c57a4a5a25e4f4af/SQL_2.sql#L10-L25">Schema</a>
   - <a href="https://github.com/nimblefox/TSQL/blob/f5306f1a16c2b1e5d98280b4c57a4a5a25e4f4af/SQL_2.sql#L28-L140">SELECT with Operators</a>
+  
+- Chapter 4  
+  - <a href="https://github.com/nimblefox/TSQL/blob/dcf21f25c9873b7d24603a971d76aa1461b97a6b/SQL_3.sql#L9-L13">CONCAT</a>
+  - <a href= "https://github.com/nimblefox/TSQL/blob/dcf21f25c9873b7d24603a971d76aa1461b97a6b/SQL_3.sql#L15-L23">ISNULL and COALESCE</a>
 
 
 CASE WHEN THEN ELSE END
