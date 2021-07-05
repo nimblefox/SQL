@@ -27,3 +27,6 @@ Resources: <a href="https://youtube.com/playlist?list=PL08903FB7ACA1C2FB">SQL Se
   - <a href="https://github.com/nimblefox/TSQL/blob/9bcaa9923336a6d97a542e0f2484059fcdf1695e/SQL_2.sql#L75-L140">WHERE, BETWEEN, IN</a>
   - <a href="https://github.com/nimblefox/TSQL/blob/f5306f1a16c2b1e5d98280b4c57a4a5a25e4f4af/SQL_2.sql#L10-L25">Schema</a>
   - <a href="https://github.com/nimblefox/TSQL/blob/f5306f1a16c2b1e5d98280b4c57a4a5a25e4f4af/SQL_2.sql#L28-L140">SELECT with Operators</a>
+
+
+CASE WHEN THEN ELSE END
