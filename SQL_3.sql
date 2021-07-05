@@ -524,5 +524,34 @@ SELECT [DeliveryMethodID],
   FROM [Purchasing].[PurchaseOrders]
 
 
--- 
 
+
+  -- Exercise 4.7 
+
+/*Write a query using the Sales.SalesOrderHeader table to display the 
+orders placed during 2011 by using a function. Include the SalesOrderID and 
+OrderDate columns in the results.*/
+SELECT [SalesOrderID], [OrderDate]
+	FROM [AdventureWorks2019].[Sales].[SalesOrderHeader]
+	WHERE YEAR(OrderDate) = 2011;
+
+
+/*Write a query using the Sales.SalesOrderHeader table listing the sales 
+in order of the month the order was placed and then the year the order was 
+placed. Include the SalesOrderID and OrderDate columns in the results*/
+SELECT  [SalesOrderID], [OrderDate]
+	FROM [AdventureWorks2019].[Sales].[SalesOrderHeader]
+	ORDER BY MONTH(OrderDate), YEAR(OrderDate);
+
+
+/* Write a query that displays the PersonType and the name columns from the 
+Person.Person table. Sort the results so that rows with a PersonType of 
+IN, SP, or SC sort by LastName. The other rows should sort by FirstName. 
+Hint: Use the CASE expression.*/
+SELECT [PersonType], [FirstName], [MiddleName], [LastName]
+	FROM [AdventureWorks2019].[Person].[Person]
+	ORDER BY CASE WHEN [PersonType] in ('IN','SP','SC')
+		THEN [LastName] ELSE [FirstName] END; 
+
+
+/**/
