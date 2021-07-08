@@ -8,7 +8,7 @@ Resources: <a href="https://youtube.com/playlist?list=PL08903FB7ACA1C2FB">SQL Se
   - <a href="https://github.com/nimblefox/TSQL/blob/d59eae0fc859215aa23f4c9cc983847bd7c453df/SQL_1.sql#L6-L8">rename a database</a>
   - <a href="https://github.com/nimblefox/TSQL/blob/d59eae0fc859215aa23f4c9cc983847bd7c453df/SQL_1.sql#L11-L18">rename and drop a database</a>
   - <a href="https://github.com/nimblefox/TSQL/blob/d59eae0fc859215aa23f4c9cc983847bd7c453df/SQL_1.sql#L21-L40">create a database with 2 tables</a>
-  - <a href="https://github.com/nimblefox/TSQL/blob/d59eae0fc859215aa23f4c9cc983847bd7c453df/SQL_1.sql#L44-L5">insert values in the tables</a>
+  - <a href="https://github.com/nimblefox/TSQL/blob/d59eae0fc859215aa23f4c9cc983847bd7c453df/SQL_1.sql#L44-L54">insert values in the tables</a>
 
 - Constraints
   - <a href="https://github.com/nimblefox/TSQL/blob/d59eae0fc859215aa23f4c9cc983847bd7c453df/SQL_1.sql#L57-L63">foreign key constraint</a>
