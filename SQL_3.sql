@@ -554,4 +554,9 @@ SELECT [PersonType], [FirstName], [MiddleName], [LastName]
 		THEN [LastName] ELSE [FirstName] END; 
 
 
-/**/
+/*Write a query that returns sales for Saturday in the Sales.Orders table. 
+Return CustomerID, OrderDate, and the result of the DATENAME function in 
+the SELECT list. Alias the new column OrderDay.*/
+SELECT [CustomerID], [OrderDate], DATENAME(WEEKDAY, OrderDate) AS [DAYNAME]
+	FROM [AdventureWorks2019].[Sales].[SalesOrderHeader]
+	WHERE DATENAME(WEEKDAY, OrderDate) = 'Saturday'
