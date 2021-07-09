@@ -31,4 +31,5 @@ Resources: <a href="https://youtube.com/playlist?list=PL08903FB7ACA1C2FB">SQL Se
 - Chapter 4  
   - <a href="https://github.com/nimblefox/TSQL/blob/dcf21f25c9873b7d24603a971d76aa1461b97a6b/SQL_3.sql#L9-L13">CONCAT</a>
   - <a href= "https://github.com/nimblefox/TSQL/blob/dcf21f25c9873b7d24603a971d76aa1461b97a6b/SQL_3.sql#L15-L23">ISNULL and COALESCE</a>
+  - <a href="https://github.com/nimblefox/TSQL/blob/88c3253bd32db6896ee990ae328e4d8ce5c8386e/SQL_3.sql#L26-L39">CAST and CONVERT</a>
   - CASE WHEN THEN ELSE END
