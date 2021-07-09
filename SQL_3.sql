@@ -560,3 +560,37 @@ the SELECT list. Alias the new column OrderDay.*/
 SELECT [CustomerID], [OrderDate], DATENAME(WEEKDAY, OrderDate) AS [DAYNAME]
 	FROM [AdventureWorks2019].[Sales].[SalesOrderHeader]
 	WHERE DATENAME(WEEKDAY, OrderDate) = 'Saturday'
+
+
+/*Write a SELECT statement, querying the Application.Cities table. Return 
+the CityName and LatestRecordedPopulation and use a CASE statement 
+to ORDER BY the LatestRecordedPopulation and sort the NULL values on 
+the bottom, not the default on top. Try without using DESC*/
+SELECT [CityName], [LatestRecordedPopulation]
+	FROM [WideWorldImporters].[Application].[Cities]
+	ORDER BY CASE WHEN [LatestRecordedPopulation] IS NULL THEN 1 ELSE 0 END 
+	
+/*Write a SELECT statement querying the Application.PaymentMethods
+table. Using a CASE expression, order the results by the payment method in the 
+following order*/
+SELECT * 
+	FROM [WideWorldImporters].[Application].[PaymentMethods]
+	ORDER BY CASE WHEN [PaymentMethodName] = 'Check' THEN 1
+				  WHEN [PaymentMethodName] = 'Credit-Card' THEN 2
+				  WHEN [PaymentMethodName] = 'EFT' THEN 3
+				  WHEN [PaymentMethodName] = 'Cash' THEN 4 END;
+
+
+-- TOP 
+--SELECT TOP(<number>) [PERCENT] [WITH TIES] <col1>
+--FROM <table1>
+
+SELECT TOP(2) WITH TIES CustomerID, OrderDate, SalesOrderID
+FROM AdventureWorks2019.Sales.SalesOrderHeader
+ORDER BY OrderDate;
+
+-- With ties returns all tie rows too, so you will have more rows in result
+
+
+-- THINKING about performance pg 145 - 147
+
