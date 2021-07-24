@@ -21,3 +21,9 @@ SELECT s.SalesOrderID, OrderDate, TotalDue, SalesOrderDetailID,
  d.ProductID, d.OrderQty
 FROM AdventureWorks2019.Sales.SalesOrderHeader AS s
 INNER JOIN AdventureWorks2019.Sales.SalesOrderDetail d ON 1 = 1;
+
+
+-- Joining on a Different Column Name
+SELECT c.CustomerID, c.PersonID, p.BusinessEntityID, p.LastName
+FROM AdventureWorks2019.Sales.Customer AS c
+INNER JOIN AdventureWorks2019.Person.Person AS p ON c.PersonID = p.BusinessEntityID;
